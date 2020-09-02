@@ -1,6 +1,6 @@
-let year='';
-let month='';
-let day='';
+let year;
+let month;
+let day;
 
 function mainFunction(txt){
     if (lengthFunction(txt)==true && punctuationFunction(txt)==true && yearFunction(txt)==true && monthFunction(txt)==true && dayFunction(txt)==true){

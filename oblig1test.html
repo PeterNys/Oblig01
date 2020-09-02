@@ -12,80 +12,80 @@
     <script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
     <script src="oblig1.js"></script>
     <script>
-        QUnit.test("1ix - 'terje'", function (assert) {
+        QUnit.test("valid date", function (assert) {
+            const actual = mainFunction('20.04.1933');
+            const expected = true;
+            assert.equal(actual, expected);
+        });
+        QUnit.test("11 characters", function (assert) {
             const actual = mainFunction('29.04.19933');
             const expected = false;
             assert.equal(actual, expected);
         });
       
-        QUnit.test("2ix - 'terje '", function (assert) {
+        QUnit.test("wrong punctuation", function (assert) {
             const actual = mainFunction('3.0101.213');
             const expected = false;
             assert.equal(actual, expected);
         });
 
-        QUnit.test("3ix - ' terje'", function (assert) {
+        QUnit.test("wrong year", function (assert) {
             const actual = mainFunction('00.2.39931');
             const expected = false;
             assert.equal(actual, expected);
         });
 
-        QUnit.test("4ix - ' terje '", function (assert) {
+        QUnit.test("wrong month", function (assert) {
             const actual = mainFunction('30.023.193');
             const expected = false;
             assert.equal(actual, expected);
         });
-        QUnit.test("5ix - ' terje '", function (assert) {
+        QUnit.test("too high month", function (assert) {
             const actual = mainFunction('30.13.1993');
             const expected = false;
             assert.equal(actual, expected);
         });
-        QUnit.test("6ix - ' terje '", function (assert) {
+        QUnit.test("too high day", function (assert) {
             const actual = mainFunction('32.05.1993');
             const expected = false;
             assert.equal(actual, expected);
         });
-        QUnit.test("7ix - ' terje '", function (assert) {
+        QUnit.test("too high day for April", function (assert) {
             const actual = mainFunction('31.04.1993');
             const expected = false;
             assert.equal(actual, expected);
         });
-        QUnit.test("8ix - ' terje '", function (assert) {
+        QUnit.test("too high day for February", function (assert) {
             const actual = mainFunction('30.02.1993');
             const expected = false;
             assert.equal(actual, expected);
         });
-        QUnit.test("9ix - ' terje '", function (assert) {
+        QUnit.test("too high day for a non-leap-year", function (assert) {
             const actual = mainFunction('29.02.1993');
             const expected = false;
             assert.equal(actual, expected);
         });
-        QUnit.test("10ix - ' terje '", function (assert) {
+        QUnit.test("Works on a leap year", function (assert) {
             const actual = mainFunction('29.02.1992');
             const expected = true;
             assert.equal(actual, expected);
         });
-        QUnit.test("11fix - ' terje '", function (assert) {
-            const actual = mainFunction('31.02.1993');
+        QUnit.test("lowest impossible date", function (assert) {
+            const actual = mainFunction('00.00.0000');
             const expected = false;
             assert.equal(actual, expected);
         });
-        QUnit.test("12fix - ' terje '", function (assert) {
-            const actual = mainFunction('32.02.1993');
+        QUnit.test("highest impossible date", function (assert) {
+            const actual = mainFunction('99.99.9999');
             const expected = false;
             assert.equal(actual, expected);
         });
-        QUnit.test("13fix - ' terje '", function (assert) {
-            const actual = mainFunction('1111111111');
-            const expected = false;
-            assert.equal(actual, expected);
-        });
-        QUnit.test("14fix - ' terje '", function (assert) {
+        QUnit.test("lowest possible date", function (assert) {
             const actual = mainFunction('01.01.0000');
             const expected = true;
             assert.equal(actual, expected);
         });
-        QUnit.test("15fix - ' terje '", function (assert) {
+        QUnit.test("highest possible date'", function (assert) {
             const actual = mainFunction('31.12.9999');
             const expected = true;
             assert.equal(actual, expected);
