@@ -1,19 +1,18 @@
-let year;
-let month;
-let day;
 
 function mainFunction(txt){
     if (lengthFunction(txt)==true && punctuationFunction(txt)==true && yearFunction(txt)==true && monthFunction(txt)==true && dayFunction(txt)==true){
         return true;
     }
     return false;
-    ;
+    
 }
 
 function lengthFunction(txt){
     if (txt.length==10){
         return true;
     }
+
+    
     return false;
 
 }
@@ -24,18 +23,21 @@ function punctuationFunction(txt){
     return false;
 }
 function yearFunction(txt){
+    let year;
     year = txt.substr(6,4);
     if (isNaN(year)==true){return false};
     return true;
 }
 function monthFunction(txt){
-    month = txt.substr(3,2);
+    let month = txt.substr(3,2);
     if (isNaN(month)==true){return false};
     if (month>12||month<1){return false;};
     return true;
 }
 function dayFunction(txt){
-    day = txt.substr(0,2);
+    let day = txt.substr(0,2);
+    let year = txt.substr(6,4);
+    let month = txt.substr(3,2);
     if (isNaN(day)==true){return false};
     if (day<1){return false};
     if (day=='31'&&(month=='01'||month=='03'||month=='05'||month=='07'||month=='08'||month=='10'||month=='12')){
@@ -45,8 +47,7 @@ function dayFunction(txt){
     if (day=='29' && isLeapYear(year)){
         return true;
     };
-    if (day<='28'){return true;};
-    return false;
+    (day<='28') ?  true: false;
     }
 
 function isLeapYear(yearpar)
